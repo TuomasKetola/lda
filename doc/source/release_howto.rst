@@ -10,7 +10,7 @@ Note that ``pbr`` requires tags to be signed for its version calculations.
 
     - Tests pass.
     - Changes since last release are mentioned in ``doc/source/whats_new.rst``.
-    - Signed tag for the current release exists. Run ``git tag -s -u 94D5E5A35ED429648B1C627AD96242D5314C8249 <n.n.n>``.
+    - Signed tag for the current release exists. Run ``git tag -s -u 94D5E5A35ED429648B1C627AD96242D5314C8249 <n.n.n>``. (Do not add a 'v' to the start of the tag, ``pbr`` needs a plain tag.)
 
 2. Build source distribution.
 
