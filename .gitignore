@@ -21,6 +21,8 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.DS_Store
+include/
 
 # Installer logs
 pip-log.txt

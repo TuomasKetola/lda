@@ -251,9 +251,11 @@ class LDA:
         self.doc_topic_ /= np.sum(self.doc_topic_, axis=1)[:, np.newaxis]
 
         # delete attributes no longer needed after fitting to save memory and reduce clutter
+        # self.nzwd_ = lda.utils.lists_to_matrix(self.ZS, self.DS)
         del self.WS
         del self.DS
         del self.ZS
+        
         return self
 
     def _initialize(self, X):
@@ -268,6 +270,7 @@ class LDA:
         logger.info("n_iter: {}".format(n_iter))
 
         self.nzw_ = nzw_ = np.zeros((n_topics, W), dtype=np.intc)
+        self.nzwd_ = nzwd_ = np.zeros((D, W), dtype=np.intc)
         self.ndz_ = ndz_ = np.zeros((D, n_topics), dtype=np.intc)
         self.nz_ = nz_ = np.zeros(n_topics, dtype=np.intc)
 
@@ -299,5 +302,5 @@ class LDA:
         n_topics, vocab_size = self.nzw_.shape
         alpha = np.repeat(self.alpha, n_topics).astype(np.float64)
         eta = np.repeat(self.eta, vocab_size).astype(np.float64)
-        lda._lda._sample_topics(self.WS, self.DS, self.ZS, self.nzw_, self.ndz_, self.nz_,
+        lda._lda._sample_topics(self.WS, self.DS, self.ZS, self.nzw_, self.ndz_, self.nz_, self.nzwd_,
                                 alpha, eta, rands)
